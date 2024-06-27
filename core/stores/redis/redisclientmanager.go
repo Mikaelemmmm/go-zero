@@ -35,6 +35,7 @@ func getClient(r *Redis) (*red.Client, error) {
 			MaxRetries:   maxRetries,
 			MinIdleConns: idleConns,
 			TLSConfig:    tlsConfig,
+			PoolSize:     nodePoolSize,
 		})
 
 		hooks := append([]red.Hook{defaultDurationHook, breakerHook{
