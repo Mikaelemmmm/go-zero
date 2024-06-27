@@ -18,7 +18,7 @@ const (
 var (
 	clientManager = syncx.NewResourceManager()
 	// nodePoolSize is default pool size for node type of redis.
-	nodePoolSize = 10 * runtime.GOMAXPROCS(0)
+	nodePoolSize = 1000 
 )
 
 func getClient(r *Redis) (*red.Client, error) {
