@@ -15,7 +15,8 @@ const addrSep = ","
 var (
 	clusterManager = syncx.NewResourceManager()
 	// clusterPoolSize is default pool size for cluster type of redis.
-	clusterPoolSize = 5 * runtime.GOMAXPROCS(0)
+	// clusterPoolSize = 5 * runtime.GOMAXPROCS(0)
+	clusterPoolSize = 5000
 )
 
 func getCluster(r *Redis) (*red.ClusterClient, error) {
@@ -32,6 +33,7 @@ func getCluster(r *Redis) (*red.ClusterClient, error) {
 			MaxRetries:   maxRetries,
 			MinIdleConns: idleConns,
 			TLSConfig:    tlsConfig,
+			PoolSize: clusterPoolSize,
 		})
 
 		hooks := append([]red.Hook{defaultDurationHook, breakerHook{
