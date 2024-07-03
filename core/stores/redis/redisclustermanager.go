@@ -3,7 +3,7 @@ package redis
 import (
 	"crypto/tls"
 	"io"
-	"runtime"
+	//"runtime"
 	"strings"
 
 	red "github.com/redis/go-redis/v9"
