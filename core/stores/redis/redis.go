@@ -2393,6 +2393,24 @@ func (s *Redis) checkConnection(pingTimeout time.Duration) error {
 	return conn.Ping(ctx).Err()
 }
 
+func (s *Redis) MonitorStats() {
+
+	conn, err := getRedis(s)
+	if err != nil {
+		logx.Errorf("redis monitor stats failed for getConn")
+		return
+	}
+
+	reds, ok := conn.(*red.Client)
+	if ok {
+		stats := reds.PoolStats()
+		// 输出连接池状态
+		fmt.Printf("Hits: %d, Misses: %d, TotalConns: %d, IdleConns: %d, StaleConns: %d\n",
+			stats.Hits, stats.Misses, stats.TotalConns, stats.IdleConns, stats.StaleConns)
+	}
+
+}
+
 // Cluster customizes the given Redis as a cluster.
 func Cluster() Option {
 	return func(r *Redis) {
