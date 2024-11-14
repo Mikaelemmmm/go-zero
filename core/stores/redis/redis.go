@@ -2407,6 +2407,8 @@ func (s *Redis) MonitorStats() {
 		// 输出连接池状态
 		fmt.Printf("Hits: %d, Misses: %d, TotalConns: %d, IdleConns: %d, StaleConns: %d\n",
 			stats.Hits, stats.Misses, stats.TotalConns, stats.IdleConns, stats.StaleConns)
+		logx.Errorf("REDIS_MONITOR --->Hits: %d, Misses: %d, TotalConns: %d, IdleConns: %d, StaleConns: %d\n",
+			stats.Hits, stats.Misses, stats.TotalConns, stats.IdleConns, stats.StaleConns)
 	}
 
 }
